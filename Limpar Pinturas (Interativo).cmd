@@ -7,7 +7,8 @@ echo   Modo Interativo
 echo ========================================
 echo.
 
-set "SCRIPT_PATH=C:\Users\ericm\OneDrive\Área de Trabalho\PESSOAL\Apagar os arquivos de pinturas\LimparPinturas.ps1"
+:: Caminho relativo (mesma pasta do arquivo .cmd)
+set "SCRIPT_PATH=%~dp0LimparPinturas.ps1"
 
 if exist "%SCRIPT_PATH%" (
     powershell.exe -ExecutionPolicy Bypass -NoProfile -File "%SCRIPT_PATH%" -Interactive

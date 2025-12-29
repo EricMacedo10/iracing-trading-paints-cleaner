@@ -19,8 +19,15 @@ $ScriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
 $LogFolder = Join-Path $ScriptPath "Logs"
 $LogFile = Join-Path $LogFolder "CleanLog_$(Get-Date -Format 'yyyy-MM-dd_HHmmss').txt"
 
-# Caminho da pasta de pinturas do iRacing
-$PaintFolder = "C:\Users\ericm\OneDrive\Documentos\iRacing\paint"
+# Caminho da pasta de pinturas do iRacing (Tenta detectar Documentos ou OneDrive)
+$DocsPath = [Environment]::GetFolderPath("MyDocuments")
+$PaintFolder = Join-Path $DocsPath "iRacing\paint"
+
+# Se não existir no padrão, tenta verificar se está no OneDrive (comum em Windows novos)
+if (-not (Test-Path $PaintFolder)) {
+    $PaintFolder = Join-Path $env:USERPROFILE "OneDrive\Documentos\iRacing\paint"
+}
+
 $TargetExtensions = @("*.tga", "*.mip")
 
 # Função de Log Simples e Robusta
