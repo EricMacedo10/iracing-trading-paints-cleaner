@@ -3,7 +3,7 @@
     Configurador automático para o sistema de limpeza Trading Paints.
 
 .DESCRIPTION
-    Este script configura o ambiente necessário para executar o Clean-TradingPaints.ps1,
+    Este script configura o ambiente necessário para executar o LimparPinturas.ps1,
     incluindo a política de execução do PowerShell e validações de permissões.
 
 .EXAMPLE
@@ -91,7 +91,14 @@ function Test-PaintFolder {
     #>
     Write-ColorMessage "`n[3/4] Verificando pasta do iRacing..." -Color "Cyan"
     
-    $PaintFolder = "C:\Users\ericm\OneDrive\Documentos\iRacing\paint"
+    # Tenta detectar Documentos padrão ou OneDrive de forma dinâmica
+    $DocsPath = [Environment]::GetFolderPath("MyDocuments")
+    $PaintFolder = Join-Path $DocsPath "iRacing\paint"
+    
+    # Fallback para OneDrive se não encontrar no padrão
+    if (-not (Test-Path $PaintFolder)) {
+        $PaintFolder = Join-Path $env:USERPROFILE "OneDrive\Documentos\iRacing\paint"
+    }
     
     if (Test-Path $PaintFolder) {
         Write-ColorMessage "✓ Pasta encontrada: $PaintFolder" -Color "Green"
@@ -107,7 +114,7 @@ function Test-PaintFolder {
     }
     else {
         Write-ColorMessage "✗ AVISO: Pasta do iRacing não encontrada!" -Color "Yellow"
-        Write-ColorMessage "Esperado em: $PaintFolder" -Color "Yellow"
+        Write-ColorMessage "O script tentou procurar em: $PaintFolder" -Color "Yellow"
         Write-ColorMessage "O script será configurado, mas não poderá executar até que o iRacing seja instalado." -Color "Yellow"
         return $false
     }
@@ -178,13 +185,13 @@ if ($AllSuccess) {
     
     Write-ColorMessage "`nCOMO USAR:" -Color "Yellow"
     Write-ColorMessage "  Execução manual interativa:" -Color "White"
-    Write-ColorMessage "    .\Clean-TradingPaints.ps1 -Interactive" -Color "Gray"
+    Write-ColorMessage "    .\LimparPinturas.ps1 -Interactive" -Color "Gray"
     
     Write-ColorMessage "`n  Execução automática (silenciosa):" -Color "White"
-    Write-ColorMessage "    .\Clean-TradingPaints.ps1" -Color "Gray"
+    Write-ColorMessage "    .\LimparPinturas.ps1" -Color "Gray"
     
     Write-ColorMessage "`n  Simulação (não exclui arquivos):" -Color "White"
-    Write-ColorMessage "    .\Clean-TradingPaints.ps1 -WhatIf" -Color "Gray"
+    Write-ColorMessage "    .\LimparPinturas.ps1 -WhatIf" -Color "Gray"
     
     Write-ColorMessage "`nPara configurar execução automática ao fechar iRacing:" -Color "Yellow"
     Write-ColorMessage "  Execute (como Administrador):" -Color "White"
