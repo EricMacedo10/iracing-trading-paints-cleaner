@@ -1,0 +1,16 @@
+# Logs
+Logs/
+*.log
+
+# Arquivos de sistema e backup
+Thumbs.db
+Desktop.ini
+*.bak
+*.tmp
+
+# Atalhos (não devem ser versionados pois caminhos são absolutos)
+*.lnk
+*.url
+
+# Credenciais e configurações locais (se houver)
+config.json
