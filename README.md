@@ -29,7 +29,7 @@ Este sistema foi desenvolvido para resolver o problema de acúmulo de arquivos d
 
 ### O que o sistema faz?
 
-✅ Percorre recursivamente a pasta `C:\Users\ericm\OneDrive\Documentos\iRacing\paint`  
+✅ Percorre recursivamente a pasta de pinturas do iRacing (ex: `Documents\iRacing\paint`)  
 ✅ Remove **apenas** arquivos `.tga` e `.mip`  
 ✅ **Preserva todas as pastas**  
 ✅ Gera logs detalhados de todas as operações  
@@ -99,9 +99,9 @@ Clique com o botão direito em cada arquivo `.ps1` → **Propriedades** → Marq
 ### Passo 3: Executar o Configurador
 
 1. Abra o **PowerShell** (modo normal, não precisa ser administrador)
-2. Navegue até a pasta dos scripts:
+2. Navegue até a pasta onde salvou os scripts:
    ```powershell
-   cd "c:\Users\ericm\OneDrive\Área de Trabalho\PESSOAL\Apagar os arquivos de pinturas"
+   cd "C:\Caminho\Para\Seus\Scripts"
    ```
 3. Execute o configurador:
    ```powershell
@@ -133,7 +133,7 @@ O configurador irá:
 #### Modo Automático (Silencioso)
 
 ```powershell
-.\Clean-TradingPaints.ps1
+.\LimparPinturas.ps1
 ```
 
 - Executa sem perguntar
@@ -143,7 +143,7 @@ O configurador irá:
 #### Modo Simulação (WhatIf)
 
 ```powershell
-.\Clean-TradingPaints.ps1 -WhatIf
+.\LimparPinturas.ps1 -WhatIf
 ```
 
 - **Não exclui nada**
@@ -176,7 +176,7 @@ Get-Content .\Logs\CleanLog_*.txt | Select-Object -Last 50
 
 2. **Navegue até a pasta dos scripts**
    ```powershell
-   cd "c:\Users\ericm\OneDrive\Área de Trabalho\PESSOAL\Apagar os arquivos de pinturas"
+   cd "C:\Caminho\Para\Seus\Scripts"
    ```
 
 3. **Execute o instalador**
@@ -194,10 +194,10 @@ Get-Content .\Logs\CleanLog_*.txt | Select-Object -Last 50
 Crie um atalho com o seguinte destino:
 
 ```
-powershell.exe -ExecutionPolicy Bypass -File "c:\Users\ericm\OneDrive\Área de Trabalho\PESSOAL\Apagar os arquivos de pinturas\Clean-TradingPaints.ps1"
+powershell.exe -ExecutionPolicy Bypass -File "C:\Caminho\Completo\Para\LimparPinturas.ps1"
 ```
 
-Coloque o atalho na área de trabalho ou na pasta de inicialização.
+Dica: Você pode copiar o caminho completo segurando Shift e clicando com o botão direito no arquivo `LimparPinturas.ps1`, selecionando "Copiar como caminho".
 
 ### Opção 3: Monitoramento de Processo (Avançado)
 
@@ -368,7 +368,7 @@ Exemplo de log gerado:
 [2025-12-29 15:30:00] [INFO] ========================================
 [2025-12-29 15:30:00] [INFO] Iniciando limpeza de arquivos Trading Paints
 [2025-12-29 15:30:00] [INFO] ========================================
-[2025-12-29 15:30:00] [INFO] Pasta alvo: C:\Users\ericm\Documents\iRacing\paint
+[2025-12-29 15:30:00] [INFO] Pasta alvo: C:\Users\USERNAME\Documents\iRacing\paint
 [2025-12-29 15:30:00] [INFO] Extensões: *.tga, *.mip
 [2025-12-29 15:30:01] [INFO] Procurando arquivos...
 [2025-12-29 15:30:05] [INFO] Encontrados 1523 arquivos *.tga
